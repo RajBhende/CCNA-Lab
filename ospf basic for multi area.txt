@@ -1,0 +1,115 @@
+Delhi
+
+en
+conf t
+host Delhi
+int s0/0
+ip add 11.0.0.1 255.0.0.0
+no shut
+clo r 64000
+band 64
+exit
+int s0/1
+ip add 12.0.0.1 255.0.0.0
+no shut
+clo r 64000
+band 64
+exit
+
+ABR1
+
+en
+conf t
+host ABR1
+int s0/0
+ip add 11.0.0.2 255.0.0.0
+no shut
+exit
+int s0/1
+ip add 1.0.0.1 255.128.0.0
+no shut
+clo r 64000
+band 64
+exit
+int s0/2
+ip add 1.129.0.1 255.128.0.0
+no shut
+clo r 64000
+band 64
+exit
+
+ABR2
+
+en
+conf t
+host ABR1
+int s0/1
+ip add 12.0.0.2 255.0.0.0
+no shut
+exit
+int s0/0
+ip add 2.0.0.1 255.128.0.0
+no shut
+clo r 64000
+band 64
+exit
+int s0/2
+ip add 2.129.0.1 255.128.0.0
+no shut
+clo r 64000
+band 64
+exit
+
+Branch1
+
+en
+conf t
+host Branch1
+int s0/1
+ip add 1.0.0.2 255.128.0.0
+no shut
+int fa0/0
+ip add 192.168.1.1 255.255.255.0
+no shut
+exit
+
+Branch01
+
+en
+conf t
+host Branch01
+int s0/2
+ip add 1.129.0.2 255.128.0.0
+no shut
+int fa0/0
+ip add 192.168.2.1 255.255.255.0
+no shut
+exit
+
+Branch2
+
+en
+conf t
+host Branch2
+int s0/0
+ip add 2.0.0.2 255.128.0.0
+no shut
+int fa0/0
+ip add 192.168.3.1 255.255.255.0
+no shut
+exit
+
+Branch02
+
+en
+conf t
+host Branch02
+int s0/0
+ip add 2.129.0.2 255.128.0.0
+no shut
+int fa0/0
+ip add 192.168.4.1 255.255.255.0
+no shut
+exit
+
+

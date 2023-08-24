@@ -1,0 +1,56 @@
+r1 
+
+en
+conf t 
+host Hydrabad
+int fa0/0
+ip add 192.168.1.1 255.255.255.0
+no shut
+exit
+int s0/0
+ip add 10.0.0.1 255.0.0.0
+no shut
+clo r 64000
+band 64
+exit
+ip route 192.168.2.0 255.255.255.0 10.0.0.2
+ip route 192.168.3.0 255.255.255.0 10.0.0.2
+
+
+Delhi
+
+en
+conf t 
+host Delhi
+int fa0/0
+ip add 192.168.2.1 255.255.255.0
+no shut
+exit
+int s0/0
+ip add 10.0.0.2 255.0.0.0
+no shut
+exit
+int s0/1
+ip add 11.0.0.1 255.0.0.0
+no shut
+clo r 64000
+band 64
+exit
+ip route 192.168.1.0 255.255.255.0 10.0.0.1
+ip route 192.168.3.0 255.255.255.0 11.0.0.2
+
+Mumbai
+
+en
+conf t 
+host Mumbai
+int fa0/0
+ip add 192.168.3.1 255.255.255.0
+no shut
+exit
+int s0/1
+ip add 11.0.0.2 255.0.0.0
+no shut
+exit
+ip route 192.168.1.0 255.255.255.0 11.0.0.1
+ip route 192.168.2.0 255.255.255.0 11.0.0.1
